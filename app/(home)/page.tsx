@@ -1,31 +1,19 @@
-import RegisterUserForm from "@/components/RegisterUserForm";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { getTodos } from "@/actions/todo";
 
-export default function Home() {
+export default async function Home() {
+  const todos = await getTodos();
+
   return (
     <main className="mt-2">
       <h1>Farahty home page</h1>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>users details</div>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Register New User</CardTitle>
-            <CardDescription>
-              user information will be sent to server
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <RegisterUserForm />
-          </CardContent>
-        </Card>
+      <div>
+        <div>test data</div>
+        <div>
+          {todos.map((i) => (
+            <div key={i.id}> {i.text} </div>
+          ))}
+        </div>
       </div>
     </main>
   );

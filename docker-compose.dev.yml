@@ -7,8 +7,7 @@ services:
       context: .
       dockerfile: ./dev.Dockerfile
     depends_on:
-      db-service:
-        condition: service_healthy
+      - db-service
     volumes:
       - .:/app/todo-app
     restart: always

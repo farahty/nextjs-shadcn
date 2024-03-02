@@ -3,11 +3,11 @@ import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
   schema: "./db/schema.ts",
-  out: "./migrations",
+  out: "./sql",
   driver: "pg",
   dbCredentials: {
     connectionString: config.POSTGRES_URL,
   },
   verbose: true,
-  strict: true,
+  strict: false,
 });

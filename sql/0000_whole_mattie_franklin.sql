@@ -1,9 +1,8 @@
-CREATE TABLE IF NOT EXISTS "user" (
-	"id" text PRIMARY KEY NOT NULL,
-	"name" text,
-	"email" text NOT NULL,
-	"emailVerified" timestamp,
-	"image" text
+CREATE TABLE IF NOT EXISTS "todo" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"text" text NOT NULL,
+	"isCompleted" boolean,
+	"createdAt" timestamp DEFAULT now()
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "account" (
@@ -25,6 +24,14 @@ CREATE TABLE IF NOT EXISTS "session" (
 	"sessionToken" text PRIMARY KEY NOT NULL,
 	"userId" text NOT NULL,
 	"expires" timestamp NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "user" (
+	"id" text PRIMARY KEY NOT NULL,
+	"name" text,
+	"email" text NOT NULL,
+	"emailVerified" timestamp,
+	"image" text
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "verificationToken" (

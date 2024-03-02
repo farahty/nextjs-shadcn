@@ -1,6 +1,6 @@
 {
-  "id": "9f253e05-e3d1-49d9-a668-bcb7d14ceb48",
-  "prevId": "9043f678-397f-4e02-96e9-a4cf5e4c2588",
+  "id": "029bc9ef-d22e-4ee2-867e-ab0c24a666a2",
+  "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -12,13 +12,14 @@
           "name": "id",
           "type": "uuid",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
         "text": {
           "name": "text",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "isCompleted": {
           "name": "isCompleted",
@@ -30,7 +31,8 @@
           "name": "createdAt",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "default": "now()"
         }
       },
       "indexes": {},

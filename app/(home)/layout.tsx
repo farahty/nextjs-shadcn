@@ -1,5 +1,7 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { GrabIcon } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { PackageCheckIcon } from "lucide-react";
+import Link from "next/link";
 export default function ({
   children,
 }: Readonly<{
@@ -7,10 +9,12 @@ export default function ({
 }>) {
   return (
     <>
-      <nav className="flex p-2 gap-2  ">
-        <GrabIcon size={30} />
+      <nav className="flex p-2 gap-2 items-center">
+        <Link href="/" className={buttonVariants({ variant: "link" })}>
+          <PackageCheckIcon size={30} />
+        </Link>
 
-        <div className="flex-grow flex items-center">app navigator</div>
+        <h5 className="flex-grow flex items-center">Todo App</h5>
 
         <ThemeToggle />
       </nav>

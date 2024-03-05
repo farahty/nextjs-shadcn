@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:make": "drizzle-kit generate:pg --config drizzle.config.ts",
-    "db:push": "drizzle-kit push:pg --config drizzle.config.ts",
-    "studio": "drizzle-kit studio --config drizzle.config.ts"
+    "db:make": "drizzle-kit generate:pg",
+    "db:push": "drizzle-kit push:pg",
+    "studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.7.0",

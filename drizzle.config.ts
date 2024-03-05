@@ -1,9 +1,10 @@
-import config from "./lib/config";
 import { defineConfig } from "drizzle-kit";
 
+import config from "./lib/config";
+
 export default defineConfig({
-  schema: "./db/schema.ts",
-  out: "./sql",
+  schema: config.SCHEMA,
+  out: config.MIGRATIONS,
   driver: "pg",
   dbCredentials: {
     connectionString: config.POSTGRES_URL,

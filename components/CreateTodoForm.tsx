@@ -30,7 +30,7 @@ const CreateTodoForm = () => {
 
   useEffect(() => {
     form.setFocus("text");
-  }, []);
+  }, [form]);
 
   return (
     <Form {...form}>

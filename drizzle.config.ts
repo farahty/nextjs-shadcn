@@ -8,6 +8,11 @@ export default defineConfig({
   driver: "pg",
   dbCredentials: {
     connectionString: config.POSTGRES_URL,
+    // database: process.env.POSTGRES_DB!,
+    // host: "db-service",
+    // password: process.env.POSTGRES_PASSWORD,
+    // port: +process.env.POSTGRES_PORT!,
+    // user: process.env.POSTGRES_USER!,
   },
   verbose: true,
   strict: false,

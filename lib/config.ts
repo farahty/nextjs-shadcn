@@ -11,25 +11,4 @@ const config = {
   MIGRATIONS: `./sql`,
 };
 
-console.log(config);
-
-async function main() {
-  const client = new Client({
-    connectionString:
-      "postgres://nimer_farahty:20210810@host.docker.internal:5436/shadcn-bun",
-  });
-
-  try {
-    await client.connect();
-    const result = await client.query("SELECT NOW()");
-    console.log(result.rows);
-
-    await client.end();
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-main();
-
 export default config;

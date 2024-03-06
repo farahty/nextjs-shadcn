@@ -1,28 +1,32 @@
-version: "3"
+version: "3.8"
 
 services:
-  todo-app:
+  app:
     container_name: todo-app
     build:
       context: .
-      dockerfile: ./Dockerfile
     depends_on:
-      - db-service
+      db:
+        condition: service_healthy
     volumes:
       - .:/app/todo-app
     restart: always
     ports:
-      - ${WEB_PORT}:3000
-  db-service:
+      - "${WEB_PORT}:3000"
+  db:
     image: postgres:16
+    container_name: postgres-db
     restart: always
     ports:
-      - ${POSTGRES_PORT}:5432
+      - "${POSTGRES_PORT}:5432"
     env_file: .env
     volumes:
-      - ./data:/var/lib/postgresql/data
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+      - local_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  local_pgdata:

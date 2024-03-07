@@ -11,5 +11,7 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD bun run dev
+RUN bun run build
+
+CMD bun start
 

@@ -8,7 +8,7 @@ import TextField from "./fields/TextField";
 import DateField from "./fields/DateField";
 import { RegisterSchema, registerSchema } from "@/actions/users/schema";
 
-export default function () {
+function RegisterForm() {
   const form = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -35,3 +35,5 @@ export default function () {
     </Form>
   );
 }
+
+export default RegisterForm;

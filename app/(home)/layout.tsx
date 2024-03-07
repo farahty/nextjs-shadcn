@@ -2,7 +2,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { buttonVariants } from "@/components/ui/button";
 import { PackageCheckIcon } from "lucide-react";
 import Link from "next/link";
-export default function ({
+
+function layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -23,3 +24,5 @@ export default function ({
     </>
   );
 }
+
+export default layout;

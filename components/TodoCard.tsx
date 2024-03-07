@@ -18,7 +18,7 @@ const TodoCard: FC<{ todo: Todo }> = ({ todo }) => {
       setChecked(!checked);
       toggle({ id: todo.id, state: !checked });
     },
-    [todo.id, checked]
+    [todo.id, checked, toggle]
   );
 
   return (
@@ -37,7 +37,7 @@ const TodoCard: FC<{ todo: Todo }> = ({ todo }) => {
         marginTop: 0,
       }}
       key={todo.id}
-      className="px-2 mt-3 border rounded hover:bg-muted flex items-center"
+      className="px-2 mt-3 border rounded hover:bg-muted flex items-center bg-card"
     >
       <Checkbox checked={checked} onClick={onChecked} id={`check-${todo.id}`} />
       <label
@@ -57,7 +57,7 @@ const TodoCard: FC<{ todo: Todo }> = ({ todo }) => {
           removeTodo(todo.id);
         }}
       >
-        <X className="group-active:scale-90" />
+        <X className="group-active:scale-90 stroke-destructive" />
       </Button>
     </AnimatedDiv>
   );

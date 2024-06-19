@@ -1,25 +1,59 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { buttonVariants } from "@/components/ui/button";
-import { PackageCheckIcon } from "lucide-react";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { UserMenu } from "@/components/UserMenu";
+import { buttonVariants } from "@/components/ui/button";
+import { auth } from "@/lib/auth";
+import { PackageCheckIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-function layout({
+async function layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <>
-      <nav className="flex p-2 gap-2 items-center">
-        <Link href="/" className={buttonVariants({ variant: "link" })}>
-          <PackageCheckIcon size={30} />
-        </Link>
+      <header className="w-full border-b">
+        <nav className="flex p-2 gap-2 items-center">
+          <Link href="/" className={buttonVariants({ variant: "link" })}>
+            <PackageCheckIcon size={30} />
+          </Link>
 
-        <h5 className="flex-grow flex items-center">Todo App</h5>
+          <h5 className="flex-grow flex items-center">Todo App</h5>
 
-        <ThemeToggle />
-      </nav>
-      <div className="w-full border-b" />
+          {session?.user ? (
+            <UserMenu user={session.user} />
+          ) : (
+            <ul className="flex gap-4">
+              <li>
+                <Link
+                  href={"/api/auth/signin"}
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "w-auto px-2"
+                  )}
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={"/api/auth/signin"}
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "w-auto px-2"
+                  )}
+                >
+                  Register
+                </Link>
+              </li>
+            </ul>
+          )}
+          <ThemeToggle />
+        </nav>
+      </header>
+
       {children}
     </>
   );

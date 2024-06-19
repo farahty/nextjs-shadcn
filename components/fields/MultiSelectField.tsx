@@ -7,25 +7,34 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Input } from "../ui/input";
-import React from "react";
 
-const TextField = <
+import React from "react";
+import MultiSelect, { Item } from "../ui/multi-select";
+
+const MultiSelectField = <
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+  TItem extends Item = Item
 >({
   control,
   name,
-  type,
   label,
   description,
+  items,
   placeholder,
+  getLabel,
+  loading,
+  onSearch,
   ...props
 }: Omit<ControllerProps<TFieldValues, TName>, "render"> & {
   label?: string;
   description?: string;
+  items: TItem[];
+
+  onSearch?: (search: string) => void;
+  loading?: boolean;
   placeholder?: string;
-  type?: React.HTMLInputTypeAttribute;
+  getLabel?: (item: TItem) => string;
 }) => {
   return (
     <FormField
@@ -35,11 +44,15 @@ const TextField = <
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input
-              {...field}
-              type={type}
-              autoComplete="off"
+            <MultiSelect
+              selected={field.value}
+              onSelect={field.onChange}
+              items={items}
+              getLabel={getLabel}
+              loading={loading}
+              onSearch={onSearch}
               placeholder={placeholder}
+              {...field}
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>
@@ -51,4 +64,4 @@ const TextField = <
   );
 };
 
-export default TextField;
+export default MultiSelectField;

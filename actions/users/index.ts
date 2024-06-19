@@ -1,46 +1,62 @@
 "use server";
 
-export default async function getApps() {
-  const data: AppleApi = await fetch(
-    "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/10/apps.json",
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+import db from "@/db";
+import { userZodSchema, users } from "@/db/auth";
+import { action } from "@/lib/client";
+import { and, eq, ilike, or } from "drizzle-orm";
+import { EmailIsUsedError } from "./errors";
+import * as bcrypt from "bcrypt";
+import { z } from "zod";
+
+export const register = action
+  .schema(userZodSchema.input)
+  .action(async ({ parsedInput: inputs }) => {
+    const found = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, inputs.email.toLowerCase()))
+      .then((res) => res[0] ?? null);
+
+    if (found) {
+      throw new EmailIsUsedError();
     }
-  ).then((d) => d.json());
 
-  return data;
-}
+    const hashedPassword = await bcrypt.hash(inputs.password!, 10);
 
-export interface AppleApi {
-  feed: Feed;
-}
+    return await db
+      .insert(users)
+      .values({ ...inputs, password: hashedPassword })
+      .returning();
+  });
 
-export interface Feed {
-  title: string;
-  id: string;
-  author: Author;
-  copyright: string;
-  country: string;
-  icon: string;
-  updated: string;
-  results: App[];
-}
+export const findUsers = action
+  .schema(
+    z
+      .object({
+        keyword: z.string().optional(),
+        name: z.string().optional(),
+        email: z.string().optional(),
+      })
+      .optional()
+  )
+  .action(async ({ parsedInput: findBy }) => {
+    let query = and();
 
-export interface Author {
-  name: string;
-  url: string;
-}
+    if (findBy?.email) {
+      const email = ilike(users.email, `%${findBy.email}%`);
+      query = and(query, email);
+    }
 
-export interface App {
-  artistName: string;
-  id: string;
-  name: string;
-  releaseDate: string;
-  kind: string;
-  artworkUrl100: string;
-  genres: any[];
-  url: string;
-}
+    if (findBy?.name) {
+      const name = ilike(users.name, `%${findBy.name}%`);
+      query = and(query, name);
+    }
+
+    if (findBy?.keyword) {
+      const email = ilike(users.email, `%${findBy.keyword}%`);
+      const name = ilike(users.name, `%${findBy.keyword}%`);
+      query = and(query, or(email, name));
+    }
+
+    return await db.select().from(users).where(query);
+  });

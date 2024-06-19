@@ -14,8 +14,8 @@ async function layout({
   const session = await auth();
   return (
     <>
-      <header className="w-full border-b">
-        <nav className="flex p-2 gap-2 items-center">
+      <header className="w-full fixed h-fit top-0 backdrop-blur">
+        <nav className="flex p-2 gap-2 items-center ">
           <Link href="/" className={buttonVariants({ variant: "link" })}>
             <PackageCheckIcon size={30} />
           </Link>
@@ -53,7 +53,7 @@ async function layout({
           <ThemeToggle />
         </nav>
       </header>
-
+      <div className="w-full h-10" />
       {children}
     </>
   );

@@ -11,12 +11,15 @@ import {
 import { User } from "next-auth";
 import { Separator } from "./ui/separator";
 import { logout } from "@/actions/auth/logout";
+import { useRouter } from "next/navigation";
 
 type UserMenuProps = {
   user: User;
 };
 
 export const UserMenu: FC<UserMenuProps> = ({ user }) => {
+  const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,6 +32,13 @@ export const UserMenu: FC<UserMenuProps> = ({ user }) => {
       <DropdownMenuContent align="end">
         <DropdownMenuItem>Dashboard</DropdownMenuItem>
         <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            router.push("/send-email");
+          }}
+        >
+          Send e-mail
+        </DropdownMenuItem>
         <Separator />
         <DropdownMenuItem onClick={() => logout()}>Logout</DropdownMenuItem>
       </DropdownMenuContent>

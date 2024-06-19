@@ -15,7 +15,7 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const sendMailPage = () => {
+const SendMailPage = () => {
   const form = useForm<SendMail>({
     resolver: zodResolver(mailerSchema),
 
@@ -42,9 +42,12 @@ const sendMailPage = () => {
     },
   });
 
-  const handleSearch = useCallback((keyword: string) => {
-    filterUsers({ keyword });
-  }, []);
+  const handleSearch = useCallback(
+    (keyword: string) => {
+      filterUsers({ keyword });
+    },
+    [filterUsers]
+  );
 
   return (
     <main>
@@ -87,4 +90,4 @@ const sendMailPage = () => {
   );
 };
 
-export default sendMailPage;
+export default SendMailPage;

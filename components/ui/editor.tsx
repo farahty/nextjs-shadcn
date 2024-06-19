@@ -2,10 +2,17 @@
 import { Block, BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { BlockNoteView } from "@blocknote/shadcn";
 import "@blocknote/core/fonts/inter.css";
-import "@blocknote/shadcn/style.css";
+
 import { FC, useCallback, useEffect, useId, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
 import { Loader2 } from "lucide-react";
+import * as Badge from "./badge";
+import * as Button from "./button";
+import * as Card from "./card";
+import * as DropdownMenu from "./dropdown-menu";
+import * as Input from "./input";
+import * as Label from "./label";
+import * as Popover from "./popover";
 
 export interface EditorProps {
   value: string;
@@ -58,7 +65,7 @@ export const Editor: FC<EditorProps> = ({
     }
 
     saveToStorage(editor.document);
-  }, [editor?.document]);
+  }, [editor, onChange, valueType]);
 
   if (editor === undefined) {
     return (
@@ -74,6 +81,15 @@ export const Editor: FC<EditorProps> = ({
       id={id}
       editor={editor}
       onBlur={handleChange}
+      shadCNComponents={{
+        Badge,
+        Button,
+        Card,
+        DropdownMenu,
+        Input,
+        Label,
+        Popover,
+      }}
       {...props}
     />
   );

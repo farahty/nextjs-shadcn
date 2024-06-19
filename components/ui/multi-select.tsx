@@ -46,10 +46,13 @@ export function MultiSelect<T extends Item = Item>({
 
   const debounced = useDebounceCallback(onSearch, 500);
 
-  const handleInputChange = React.useCallback((search: string) => {
-    setInputValue(search);
-    debounced(search);
-  }, []);
+  const handleInputChange = React.useCallback(
+    (search: string) => {
+      setInputValue(search);
+      debounced(search);
+    },
+    [debounced]
+  );
 
   const handleUnselect = React.useCallback(
     (item: T) => {
@@ -57,7 +60,7 @@ export function MultiSelect<T extends Item = Item>({
 
       onSelect(newSelection);
     },
-    [selected]
+    [selected, onSelect]
   );
 
   const handleInputClick = React.useCallback((e: React.MouseEvent) => {
@@ -86,7 +89,7 @@ export function MultiSelect<T extends Item = Item>({
         }
       }
     },
-    [selected]
+    [selected, onSelect]
   );
 
   const selectables = React.useMemo(

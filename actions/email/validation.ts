@@ -25,6 +25,6 @@ export const mailerSchema = z
     },
     {
       path: ["users"],
-      message: "Select at least on sender",
+      message: "Select at least on recipient",
     }
   );

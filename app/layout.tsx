@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import "@blocknote/shadcn/style.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { DataProvider } from "@/components/DataProvider";

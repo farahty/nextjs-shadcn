@@ -3,11 +3,11 @@ import Google from "next-auth/providers/google";
 
 import type { NextAuthConfig } from "next-auth";
 
-const BASE_PATH = "https://farahty.com/api/auth";
+const BASE_PATH = "/api/auth";
 
 export default {
   debug: true,
-  trustHost: true,
+  trustHost: false,
   basePath: BASE_PATH,
   secret: process.env.NEXTAUTH_SECRET,
   providers: [GitHub, Google],

@@ -40,6 +40,7 @@ const TextField = <
               type={type}
               autoComplete="off"
               placeholder={placeholder}
+              aria-label={name}
             />
           </FormControl>
           <FormDescription>{description}</FormDescription>

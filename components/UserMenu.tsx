@@ -23,9 +23,12 @@ export const UserMenu: FC<UserMenuProps> = ({ user }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" aria-label="User Icon">
           <Avatar className="w-6 h-6">
-            <AvatarImage src={user.image as string | undefined} />
+            <AvatarImage
+              alt="user image"
+              src={user.image as string | undefined}
+            />
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -33,6 +36,7 @@ export const UserMenu: FC<UserMenuProps> = ({ user }) => {
         <DropdownMenuItem>Dashboard</DropdownMenuItem>
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuItem
+          aria-label="send email"
           onClick={() => {
             router.push("/send-email");
           }}

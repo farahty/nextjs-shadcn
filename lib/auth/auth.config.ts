@@ -8,7 +8,7 @@ const BASE_PATH = "/api/auth";
 export default {
   debug: true,
   trustHost: true,
-  //basePath: BASE_PATH,
+  basePath: BASE_PATH,
   secret: process.env.NEXTAUTH_SECRET,
   providers: [GitHub, Google],
 

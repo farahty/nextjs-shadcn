@@ -39,7 +39,12 @@ const TodoCard: FC<{ todo: Todo }> = ({ todo }) => {
       key={todo.id}
       className="px-2 mt-3 border rounded hover:bg-muted flex items-center bg-card"
     >
-      <Checkbox checked={checked} onClick={onChecked} id={`check-${todo.id}`} />
+      <Checkbox
+        aria-label="Check Todo"
+        checked={checked}
+        onClick={onChecked}
+        id={`check-${todo.id}`}
+      />
       <label
         className={cn("flex-grow mx-2 p-3", {
           "line-through": checked,
@@ -50,6 +55,7 @@ const TodoCard: FC<{ todo: Todo }> = ({ todo }) => {
       </label>
       {status === "executing" && <Loader2 className="animate-spin" />}
       <Button
+        aria-label="Remove Todo"
         variant="ghost"
         className="group"
         disabled={status === "executing"}

@@ -1,11 +1,34 @@
 import React from "react";
 import LoginFrom from "./LoginFrom";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import GitHubLogin from "./GitHubLogin";
+import GoogleLogin from "./GoogleLogin";
+import Divider from "./Divider";
 
 const LoginPage = () => {
   return (
-    <main className="flex m-2 mx-auto w-full h-[calc(100vh-20px)] max-w-md flex-col justify-center items-center ">
-      <LoginFrom />
-    </main>
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Welcome Back</CardTitle>
+        <CardDescription>
+          Enter your credentials to access your account
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col space-y-8">
+        <LoginFrom />
+        <Divider />
+        <div className="flex flex-col gap-2">
+          <GitHubLogin />
+          <GoogleLogin />
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

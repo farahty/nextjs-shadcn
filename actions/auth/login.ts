@@ -15,6 +15,7 @@ export const credentialsLogin = action
     await signIn("credentials", {
       email: parsedInput.email,
       password: parsedInput.password,
+      redirectTo: "/",
     });
   });
 

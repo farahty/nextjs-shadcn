@@ -4,11 +4,11 @@ import { PackageCheckIcon } from "lucide-react";
 import Link from "next/link";
 import React, { FC, ReactNode } from "react";
 
-export type GuestLayoutProps = {
+export type AuthLayoutProps = {
   children: ReactNode;
 };
 
-const GuestLayout: FC<GuestLayoutProps> = ({ children }) => {
+const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   return (
     <>
       <header className="w-full h-fit">
@@ -23,9 +23,18 @@ const GuestLayout: FC<GuestLayoutProps> = ({ children }) => {
         </nav>
       </header>
 
-      <main className="mx-auto w-full">{children}</main>
+      <main className="flex m-2 mx-auto w-full h-[calc(100vh-80px)] max-w-md flex-col justify-center items-center ">
+        {children}
+
+        <Link
+          className={buttonVariants({ variant: "link", className: "m-4" })}
+          href="/"
+        >
+          &#8592; Back to home
+        </Link>
+      </main>
     </>
   );
 };
 
-export default GuestLayout;
+export default AuthLayout;

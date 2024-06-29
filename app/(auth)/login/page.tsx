@@ -11,6 +11,8 @@ import GitHubLogin from "./GitHubLogin";
 import GoogleLogin from "./GoogleLogin";
 import Divider from "./Divider";
 
+import Disclaimer from "./Disclaimer";
+
 const LoginPage = () => {
   return (
     <Card className="w-full">
@@ -27,6 +29,7 @@ const LoginPage = () => {
           <GitHubLogin />
           <GoogleLogin />
         </div>
+        <Disclaimer />
       </CardContent>
     </Card>
   );

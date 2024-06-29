@@ -31,6 +31,7 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-email/components": "^0.0.19",
+    "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -51,13 +52,15 @@
     "react-day-picker": "^8.10.0",
     "react-dom": "^18",
     "react-email": "^2.1.4",
+    "react-google-recaptcha-v3": "^1.10.1",
     "react-hook-form": "7.50.1",
     "resend": "^3.2.0",
     "sonner": "^1.4.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zod-form-data": "^2.0.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

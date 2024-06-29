@@ -91,7 +91,7 @@ export const authenticators = pgTable(
 
 export const userZodSchema = {
   input: createInsertSchema(users)
-    .extend({ confirmPassword: z.string() })
+    .extend({ confirmPassword: z.string(), recaptcha: z.string() })
     .refine(({ password, confirmPassword }) => password === confirmPassword, {
       path: ["confirmPassword"],
       message: "password do not matched",

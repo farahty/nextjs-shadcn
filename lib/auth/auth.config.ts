@@ -11,6 +11,10 @@ export default {
   basePath: BASE_PATH,
   secret: process.env.NEXTAUTH_SECRET,
   providers: [GitHub, Google],
+  pages: {
+    signIn: "/login",
+    newUser: "/register",
+  },
 
   callbacks: {
     jwt({ token, user }) {

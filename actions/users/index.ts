@@ -2,15 +2,19 @@
 
 import db from "@/db";
 import { userZodSchema, users } from "@/db/auth";
-import { action } from "@/lib/client";
+import { ActionError, action } from "@/lib/client";
 import { and, eq, ilike, or } from "drizzle-orm";
 import { EmailIsUsedError } from "./errors";
 import * as bcrypt from "bcrypt";
 import { z } from "zod";
+import { validateReCaptcha } from "@/lib/re-captcha";
+import { signIn } from "@/lib/auth";
 
 export const register = action
   .schema(userZodSchema.input)
   .action(async ({ parsedInput: inputs }) => {
+    await validateReCaptcha(inputs.recaptcha);
+
     const found = await db
       .select()
       .from(users)
@@ -23,10 +27,17 @@ export const register = action
 
     const hashedPassword = await bcrypt.hash(inputs.password!, 10);
 
-    return await db
+    await db
       .insert(users)
       .values({ ...inputs, password: hashedPassword })
       .returning();
+
+    await signIn("credentials", {
+      email: inputs.email,
+      password: inputs.password,
+      redirectTo: "/",
+      redirect: true,
+    });
   });
 
 export const findUsers = action

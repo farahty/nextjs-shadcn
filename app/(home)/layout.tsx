@@ -4,7 +4,7 @@ import { UserMenu } from "@/components/UserMenu";
 import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { PackageCheckIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import GuestMenu from "@/components/GuestMenu";
 
 async function layout({
   children,
@@ -12,6 +12,7 @@ async function layout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+
   return (
     <>
       <header className="w-full fixed h-fit top-0 backdrop-blur">
@@ -22,34 +23,7 @@ async function layout({
 
           <h5 className="flex-grow flex items-center">Todo App</h5>
 
-          {session?.user ? (
-            <UserMenu user={session.user} />
-          ) : (
-            <ul className="flex gap-4">
-              <li>
-                <Link
-                  href={"/api/auth/signin"}
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-auto px-2"
-                  )}
-                >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/api/auth/signin"}
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-auto px-2"
-                  )}
-                >
-                  Register
-                </Link>
-              </li>
-            </ul>
-          )}
+          {session?.user ? <UserMenu user={session.user} /> : <GuestMenu />}
           <ThemeToggle />
         </nav>
       </header>

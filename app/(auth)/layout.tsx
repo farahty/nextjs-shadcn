@@ -1,3 +1,5 @@
+import AppLogo from "@/components/AppLogo";
+import AppTitle from "@/components/AppTitle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { buttonVariants } from "@/components/ui/button";
 import { PackageCheckIcon } from "lucide-react";
@@ -13,11 +15,8 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
     <>
       <header className="w-full h-fit">
         <nav className="flex p-2 gap-2 items-center ">
-          <Link href="/" className={buttonVariants({ variant: "link" })}>
-            <PackageCheckIcon size={30} />
-          </Link>
-
-          <h5 className="flex-grow flex items-center">Todo App</h5>
+          <AppLogo />
+          <AppTitle />
 
           <ThemeToggle />
         </nav>

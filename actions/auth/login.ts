@@ -15,14 +15,16 @@ export const credentialsLogin = action
     await signIn("credentials", {
       email: parsedInput.email,
       password: parsedInput.password,
-      redirectTo: "/",
+      redirectTo: parsedInput.callbackUrl ?? "/",
     });
   });
 
 export const socialLogin = action
   .schema(socialLoginSchema)
   .action(async ({ parsedInput }) => {
-    await signIn(parsedInput.provider, { redirectTo: "/" });
+    await signIn(parsedInput.provider, {
+      redirectTo: parsedInput.callbackUrl ?? "/",
+    });
   });
 
 export const emailLogin = action

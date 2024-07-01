@@ -3,13 +3,22 @@
 import * as login from "@/actions/auth/login";
 import { Button } from "@/components/ui/button";
 import { useAction } from "next-safe-action/hooks";
+import { useSearchParams } from "next/navigation";
 
 const GitHubLogin = () => {
   const { execute, status } = useAction(login.socialLogin);
+  const params = useSearchParams();
 
   return (
     <form action={execute}>
       <input type="hidden" name="provider" value="github" />
+      <input
+        type="hidden"
+        value={
+          params.has("callbackUrl") ? params.get("callbackUrl") ?? "/" : "/"
+        }
+        name="callbackUrl"
+      />
       <Button
         variant="outline"
         className="gap-2 w-full"

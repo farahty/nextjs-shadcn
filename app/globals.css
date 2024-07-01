@@ -81,7 +81,7 @@ h1 {
 }
 
 h2 {
-  @apply border-b pb-2 text-3xl font-semibold first:mt-10;
+  @apply border-b pb-2 text-3xl font-semibold;
 }
 
 h3 {

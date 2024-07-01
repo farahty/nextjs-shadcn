@@ -14,8 +14,11 @@ import {
   credentialsLoginSchema,
 } from "@/actions/auth/schema";
 import { toast } from "sonner";
+import { useSearchParams } from "next/navigation";
 
 const LoginFrom = () => {
+  const params = useSearchParams();
+
   const form = useForm<CredentialsLogin>({
     resolver: zodResolver(credentialsLoginSchema),
   });
@@ -43,6 +46,14 @@ const LoginFrom = () => {
           name="password"
           label="Password"
           type="password"
+        />
+
+        <input
+          type="hidden"
+          defaultValue={
+            params.has("callbackUrl") ? params.get("callbackUrl") ?? "/" : "/"
+          }
+          {...form.register("callbackUrl")}
         />
         <ReCaptchaField control={form.control} name="reCaptcha" />
         <Button className="w-full">Login &rarr;</Button>

@@ -1,13 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { buttonVariants } from "./ui/button";
+import { usePathname } from "next/navigation";
 
 const GuestMenu = () => {
+  const pathname = usePathname();
+
   return (
     <ul className="flex gap-4">
       <li>
         <Link
-          href={"/login"}
+          href={`/login?callbackUrl=${pathname ?? "/"}`}
           className={buttonVariants({
             variant: "ghost",
             size: "icon",
@@ -19,7 +24,7 @@ const GuestMenu = () => {
       </li>
       <li>
         <Link
-          href={"/register"}
+          href={`/register?callbackUrl=${pathname ?? "/"}`}
           className={buttonVariants({
             variant: "ghost",
             size: "icon",

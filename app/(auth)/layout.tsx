@@ -2,7 +2,6 @@ import AppLogo from "@/components/AppLogo";
 import AppTitle from "@/components/AppTitle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { buttonVariants } from "@/components/ui/button";
-import { PackageCheckIcon } from "lucide-react";
 import Link from "next/link";
 import React, { FC, ReactNode } from "react";
 
@@ -17,7 +16,6 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
         <nav className="flex p-2 gap-2 items-center ">
           <AppLogo />
           <AppTitle />
-
           <ThemeToggle />
         </nav>
       </header>

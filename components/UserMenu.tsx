@@ -19,8 +19,6 @@ type UserMenuProps = {
 };
 
 export const UserMenu: FC<UserMenuProps> = ({ user }) => {
-  const router = useRouter();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -37,14 +35,20 @@ export const UserMenu: FC<UserMenuProps> = ({ user }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem aria-label="dashboard">
-          <Link href="dashboard">Dashboard</Link>
+        <DropdownMenuItem aria-label="dashboard" asChild>
+          <Link href="dashboard" className="cursor-pointer">
+            Dashboard
+          </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem aria-label="profile">
-          <Link href="/profile">Profile</Link>
+        <DropdownMenuItem aria-label="profile" asChild>
+          <Link href="/profile" className="cursor-pointer">
+            Profile
+          </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem aria-label="send email">
-          <Link href="/send-email">Send E-Mail</Link>
+        <DropdownMenuItem aria-label="send email" asChild>
+          <Link href="/send-email" className="cursor-pointer">
+            Send E-Mail
+          </Link>
         </DropdownMenuItem>
         <Separator />
         <DropdownMenuItem onClick={() => logout()}>Logout</DropdownMenuItem>

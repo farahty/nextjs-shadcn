@@ -2,7 +2,7 @@
 import { Block, BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { BlockNoteView } from "@blocknote/shadcn";
 import "@blocknote/core/fonts/inter.css";
-
+import "@blocknote/shadcn/style.css";
 import { FC, useCallback, useEffect, useId, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
 import { Loader2 } from "lucide-react";
@@ -13,6 +13,11 @@ import * as DropdownMenu from "./dropdown-menu";
 import * as Input from "./input";
 import * as Label from "./label";
 import * as Popover from "./popover";
+// import * as Form from "./form";
+import * as Select from "./select";
+import * as Tabs from "./tabs";
+import * as Toggle from "./toggle";
+import * as Tooltip from "./tooltip";
 
 export interface EditorProps {
   value: string;
@@ -29,7 +34,7 @@ export const Editor: FC<EditorProps> = ({
   ...props
 }) => {
   const id = useId();
-  const { theme } = useTheme();
+  const { theme, systemTheme } = useTheme();
 
   const [initialContent, setInitialContent] = useState<
     PartialBlock[] | undefined | "loading"
@@ -77,7 +82,9 @@ export const Editor: FC<EditorProps> = ({
 
   return (
     <BlockNoteView
-      theme={theme === "dark" ? "dark" : "light"}
+      theme={
+        theme === "dark" ? "dark" : theme === "light" ? "light" : systemTheme
+      }
       id={id}
       editor={editor}
       onBlur={handleChange}
@@ -86,9 +93,14 @@ export const Editor: FC<EditorProps> = ({
         Button,
         Card,
         DropdownMenu,
+        //Form,
         Input,
         Label,
         Popover,
+        Select,
+        Tabs,
+        Toggle,
+        Tooltip,
       }}
       {...props}
     />

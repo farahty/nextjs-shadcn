@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.2.0",
-    "@blocknote/core": "^0.14.1",
-    "@blocknote/react": "^0.14.1",
-    "@blocknote/shadcn": "^0.14.1",
-    "@hookform/resolvers": "^3.3.4",
+    "@blocknote/core": "0.14.5",
+    "@blocknote/react": "0.14.6",
+    "@blocknote/shadcn": "0.14.6",
+    "@hookform/resolvers": "^3.6.0",
     "@next/env": "^14.1.0",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -28,8 +28,12 @@
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-progress": "^1.0.3",
+    "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@radix-ui/react-toggle": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.2",
     "@react-email/components": "^0.0.19",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
@@ -59,7 +63,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
-    "zod": "^3.22.4",
+    "zod": "^3.23.8",
     "zod-form-data": "^2.0.2"
   },
   "devDependencies": {
@@ -74,6 +78,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
+    "sass": "^1.77.6",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }

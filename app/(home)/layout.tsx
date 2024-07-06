@@ -5,7 +5,7 @@ import GuestMenu from "@/components/GuestMenu";
 import AppLogo from "@/components/AppLogo";
 import AppTitle from "@/components/AppTitle";
 
-async function layout({
+async function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -30,4 +30,4 @@ async function layout({
   );
 }
 
-export default layout;
+export default HomeLayout;

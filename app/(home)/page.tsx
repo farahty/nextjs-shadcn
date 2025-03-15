@@ -17,7 +17,7 @@ export default async function Home() {
 
   return (
     <main className="mt-2">
-      <h1 className="my-8">Farahty Todo App</h1>
+      <h1 className="my-8">Farahty App</h1>
       <div>
         <Card>
           <CardHeader>

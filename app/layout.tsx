@@ -5,6 +5,7 @@ import "./globals.scss";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { DataProvider } from "@/components/DataProvider";
 import { Toaster } from "@/components/ui/sonner";
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,6 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          defer
+          src="https://logs.farahty.com/script.js"
+          data-website-id="6559df8b-2d75-41ea-8686-fde2c9bc42d4"
+        ></Script>
+      </head>
       <body className={`${poppins.className} `}>
         <DataProvider>
           <ThemeProvider
